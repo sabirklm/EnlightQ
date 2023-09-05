@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "184570545081",
+    "project_id": "enlightq-ae9d4",
+    "storage_bucket": "enlightq-ae9d4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184570545081:android:135d0b1103081d559e6c68",
+        "android_client_info": {
+          "package_name": "com.enlightq.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184570545081-qpnfuvpee00v9b01b597dfofea2v27gb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAnERBxURHCT2eKn-cRkW_bYE26EYmI9GU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184570545081-qpnfuvpee00v9b01b597dfofea2v27gb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

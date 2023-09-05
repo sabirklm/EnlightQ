@@ -1,6 +1,12 @@
 # enlight_q_app
 
-A new Flutter project.
+enlight_q_app
+EnlightQ
+
+ flutter pub global run rename --bundleId com.enlightq.app
+
+ flutter pub global run rename --appname "EnlightQ"
+
 
 ## Getting Started
 
