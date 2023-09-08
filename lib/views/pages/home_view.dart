@@ -1,12 +1,25 @@
 import 'package:enlight_q_app/app.dart';
 import 'package:enlight_q_app/models/question.dart';
 import 'package:enlight_q_app/views/pages/question_paper_view.dart';
+import 'package:enlight_q_app/views/pages/status_view.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({super.key});
+class HomeView extends StatefulWidget {
+  const HomeView({super.key});
 
+  @override
+  State<HomeView> createState() => _HomeViewState();
+}
+
+class _HomeViewState extends State<HomeView> {
+  final screens = <Widget>[
+    HomeScreen(),
+    StatusView(),
+    Container(),
+    Container()
+  ];
+  var _selectedScreenIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,10 +46,13 @@ class HomePage extends StatelessWidget {
             // backgroundColor: Colors.pink,
           ),
         ],
-        currentIndex: 0,
+        currentIndex: _selectedScreenIndex,
         selectedItemColor: Colors.amber,
         onTap: (value) {
-          print('[M] $value');
+          setState(() {
+            print('[M] $value');
+            _selectedScreenIndex = value;
+          });
         },
         selectedLabelStyle: GoogleFonts.nunito(
           fontSize: 14,
@@ -47,23 +63,32 @@ class HomePage extends StatelessWidget {
           fontWeight: FontWeight.w700,
         ),
       ),
-      appBar: AppBar(),
-      body: ListView(
-        children: [
-          ...List.generate(
-            10,
-            (index) => QuextionPapers(
-              papers: [QuestionPaper()],
-              onTapPaper: (QuestionPaper paper) {
-                EnlightRoute.to(
-                  context: context,
-                  page: const QuestionPaperPage(),
-                );
-              },
-            ),
+      // appBar: AppBar(),
+      body:screens[_selectedScreenIndex],
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  const HomeScreen({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return ListView(
+      children: [
+        ...List.generate(
+          10,
+          (index) => QuextionPapers(
+            papers: [QuestionPaper()],
+            onTapPaper: (QuestionPaper paper) {
+              EnlightRoute.to(
+                context: context,
+                page: const QuestionPaperPage(),
+              );
+            },
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

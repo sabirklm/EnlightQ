@@ -12,7 +12,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'EnlightQ',
       theme: ThemeData.dark(),
-      home: const HomePage(),
+      home: const HomeView(),
     );
   }
 }
