@@ -47,6 +47,7 @@ dependencies:
   firebase_analytics: ^10.4.5
   responsive_framework: ^1.0.0
   story: ^1.1.0
+  get: ^4.6.5
 
 dev_dependencies:
   flutter_test:

@@ -1,8 +1,13 @@
 import 'package:enlight_q_app/app.dart';
+import 'package:enlight_q_app/controllers/home_controller.dart';
+import 'package:enlight_q_app/mock_data.dart';
 import 'package:enlight_q_app/models/question.dart';
+import 'package:enlight_q_app/services/service.dart';
 import 'package:enlight_q_app/views/pages/question_paper_view.dart';
 import 'package:enlight_q_app/views/pages/status_view.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeView extends StatefulWidget {
@@ -31,13 +36,13 @@ class _HomeViewState extends State<HomeView> {
             // backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.business),
-            label: 'Business',
+            icon: Icon(Icons.receipt_long_outlined),
+            label: 'Recents',
             // backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.school),
-            label: 'School',
+            icon: Icon(Icons.important_devices),
+            label: 'Important',
             // backgroundColor: Colors.purple,
           ),
           BottomNavigationBarItem(
@@ -64,7 +69,7 @@ class _HomeViewState extends State<HomeView> {
         ),
       ),
       // appBar: AppBar(),
-      body:screens[_selectedScreenIndex],
+      body: screens[_selectedScreenIndex],
     );
   }
 }
@@ -74,30 +79,43 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HomeController controller = Get.put(HomeController());
     return ListView(
       children: [
-        ...List.generate(
-          10,
-          (index) => QuextionPapers(
-            papers: [QuestionPaper()],
-            onTapPaper: (QuestionPaper paper) {
-              EnlightRoute.to(
-                context: context,
-                page: const QuestionPaperPage(),
-              );
-            },
-          ),
-        ),
+        Obx(() {
+          return Column(
+            children: [
+              ...List.generate(
+                controller.homeViews.length,
+                (index) => QuextionPapers(
+                  title: controller.homeViews[index].title ?? "",
+                  papers: controller.homeViews[index].questionPapersIds ?? [],
+                  onTapPaper: (paperId) {
+                    EnlightRoute.to(
+                      context: context,
+                      page: const QuestionPaperPage(),
+                    );
+                  },
+                ),
+              ),
+            ],
+          );
+        }),
       ],
     );
   }
 }
 
 class QuextionPapers extends StatelessWidget {
-  final List<QuestionPaper> papers;
-  final void Function(QuestionPaper paper) onTapPaper;
-  const QuextionPapers(
-      {super.key, required this.papers, required this.onTapPaper});
+  final List<String> papers;
+  final String title;
+  final void Function(String id) onTapPaper;
+  const QuextionPapers({
+    super.key,
+    required this.papers,
+    required this.onTapPaper,
+    required this.title,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -108,7 +126,7 @@ class QuextionPapers extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.all(8.0),
           child: Text(
-            'CAT',
+            title,
             style: GoogleFonts.nunito(
               fontSize: 16,
               letterSpacing: 2.0,
@@ -122,7 +140,7 @@ class QuextionPapers extends StatelessWidget {
             scrollDirection: Axis.horizontal,
             children: [
               ...List.generate(
-                10,
+                papers.length,
                 (index) => GestureDetector(
                   onTap: () {
                     onTapPaper(papers[index]);
