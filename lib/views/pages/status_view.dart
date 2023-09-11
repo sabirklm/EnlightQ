@@ -1,8 +1,9 @@
 import 'package:enlight_q_app/controllers/home_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:google_fonts/google_fonts.dart';
 import 'package:story/story.dart';
+
+import '../widgets/loading_indicator.dart';
 
 class StatusView extends StatefulWidget {
   const StatusView({super.key});
@@ -22,8 +23,8 @@ class _StatusViewState extends State<StatusView> {
           return Column(
             children: [
               if (controller.isStatusLoading.value)
-               const CircularProgressIndicator()
-              else
+                const LoadingIndicator()
+              else if(controller.status.isNotEmpty)
                 Expanded(
                   child: StoryPageView(
                     itemBuilder: (context, pageIndex, storyIndex) {

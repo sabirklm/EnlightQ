@@ -48,6 +48,8 @@ dependencies:
   responsive_framework: ^1.0.0
   story: ^1.1.0
   get: ^4.6.5
+  flutter_web_browser: ^0.17.1
+  flutter_spinkit: ^5.2.0
 
 dev_dependencies:
   flutter_test:

@@ -1,13 +1,11 @@
 import 'package:enlight_q_app/app.dart';
 import 'package:enlight_q_app/controllers/home_controller.dart';
-import 'package:enlight_q_app/mock_data.dart';
-import 'package:enlight_q_app/models/question.dart';
-import 'package:enlight_q_app/services/service.dart';
+import 'package:enlight_q_app/views/pages/profile_view.dart';
 import 'package:enlight_q_app/views/pages/question_paper_view.dart';
+import 'package:enlight_q_app/views/pages/recent_view.dart';
 import 'package:enlight_q_app/views/pages/status_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class HomeView extends StatefulWidget {
@@ -21,8 +19,8 @@ class _HomeViewState extends State<HomeView> {
   final screens = <Widget>[
     HomeScreen(),
     StatusView(),
-    Container(),
-    Container()
+    RecentView(),
+    ProfileView()
   ];
   var _selectedScreenIndex = 0;
   @override

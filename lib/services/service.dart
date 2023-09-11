@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enlight_q_app/models/question.dart';
+import 'package:enlight_q_app/models/recent_event.dart';
 import 'package:enlight_q_app/models/status.dart';
 
 class BaseService {
@@ -23,15 +24,19 @@ class BaseService {
 
   Future<List<Status>> getStatus() async {
     var homeSnap = await _dbRef.collection("status").get();
-    addData(
-        collection: "status",
-        data: Status(
-          createdAt: DateTime.now().toString(),
-          imgUrl: "",
-          isActive: true,
-        ).toJson());
+  
     var views = homeSnap.docs.map((e) {
       var temp = Status.fromJson(e.data());
+      temp.id = e.id;
+      return temp;
+    }).toList();
+    return views;
+  }
+
+  Future<List<RecentEvent>> getRecentEvents() async {
+    var homeSnap = await _dbRef.collection("events").get();
+    var views = homeSnap.docs.map((e) {
+      var temp = RecentEvent.fromJson(e.data());
       temp.id = e.id;
       return temp;
     }).toList();
