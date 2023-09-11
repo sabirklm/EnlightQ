@@ -50,12 +50,14 @@ class Question {
   final String text;
   final List<Option> options;
   final String explanation;
+   String? questionPaperId;
 
   Question({
     required this.id,
     required this.text,
     required this.options,
     required this.explanation,
+    this.questionPaperId,
   });
 
   factory Question.fromJson(Map<String, dynamic> json) =>

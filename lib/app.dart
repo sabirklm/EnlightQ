@@ -1,3 +1,4 @@
+import 'package:enlight_q_app/views/pages/auth_view.dart';
 import 'package:flutter/material.dart';
 
 import 'views/pages/home_view.dart';
@@ -12,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'EnlightQ',
       theme: ThemeData.dark(),
-      home: const HomeView(),
+      home: const LoginScreen(),
     );
   }
 }

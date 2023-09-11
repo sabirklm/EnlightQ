@@ -1,5 +1,6 @@
 import 'package:enlight_q_app/mock_data.dart';
 import 'package:enlight_q_app/models/question.dart';
+import 'package:enlight_q_app/views/widgets/decorated_container.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -14,19 +15,18 @@ class QuestionPaperPage extends StatelessWidget {
       appBar: AppBar(),
       body: ListView(
         children: [
-          Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              children: [
-                ...List.generate(
-                  questions.length,
-                  (index) => QuestionCard(
+          Column(
+            children: [
+              ...List.generate(
+                questions.length,
+                (index) => DecoratedContainer(
+                  child: QuestionCard(
                     question: questions[index],
                     questionIndex: index,
                   ),
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ],
       ),
