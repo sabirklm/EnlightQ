@@ -169,6 +169,19 @@ class LoginScreen extends StatelessWidget {
                       ),
                     ],
                   ),
+                  InkWell(
+                    onTap: () {
+                      
+                    },
+                    child: Text(
+                      "Continue as Guest",
+                      style: GoogleFonts.numans(
+                        fontSize: 16,
+                        wordSpacing: 2.0,
+                        color: Colors.green,
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),

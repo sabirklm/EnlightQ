@@ -25,4 +25,12 @@ class EnlightRoute {
     );
     Navigator.push(context, route);
   }
+
+  static toOffAll({required BuildContext context, required Widget page}) {
+    var route = MaterialPageRoute(
+      builder: (context) => page,
+    );
+    Navigator.pop(context);
+     Navigator.push(context, route);
+  }
 }
