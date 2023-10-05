@@ -1,14 +1,25 @@
+import 'dart:ui';
+
+import 'package:enlight_q_app/controllers/auth_controller.dart';
 import 'package:enlight_q_app/views/pages/home_view.dart';
-import 'package:enlight_q_app/views/widgets/decorated_container.dart';
+import 'package:enlight_q_app/views/pages/initial_view.dart';
+import 'package:enlight_q_app/views/pages/profile_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../../app.dart';
 
-class LoginScreen extends StatelessWidget {
-  const LoginScreen({super.key});
+class AuthView extends StatefulWidget {
+  const AuthView({super.key});
 
+  @override
+  State<AuthView> createState() => _AuthViewState();
+}
+
+class _AuthViewState extends State<AuthView> {
   @override
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
@@ -87,9 +98,7 @@ class LoginScreen extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                    onTap: () {
-                      EnlightRoute.to(context: context, page: const HomeView());
-                    },
+                    onTap: () {},
                     child: Container(
                       width: width,
                       padding: const EdgeInsets.symmetric(
@@ -171,7 +180,7 @@ class LoginScreen extends StatelessWidget {
                   ),
                   InkWell(
                     onTap: () {
-                      
+                      _signInAnonymously(context);
                     },
                     child: Text(
                       "Continue as Guest",
@@ -190,6 +199,15 @@ class LoginScreen extends StatelessWidget {
       ),
     );
   }
+
+  _signInAnonymously(BuildContext context) async {
+    try {
+      showLoading(future: FirebaseAuth.instance.signInAnonymously());
+      // EnlightRoute.to(context: context, page: const HomeView());
+      Get.put(AuthController());
+      Get.offAll(() => const InitialView());
+    } catch (e) {}
+  }
 }
 
 class SignUpScreen extends StatelessWidget {
@@ -203,4 +221,51 @@ class SignUpScreen extends StatelessWidget {
       ),
     );
   }
+}
+
+showLoading({Future<dynamic>? future}) async {
+  Get.dialog(
+    BackdropFilter(
+      filter: ImageFilter.blur(sigmaX: 2.3, sigmaY: 1.5),
+      child: Container(
+        padding: EdgeInsets.symmetric(horizontal: Get.width / 2 - 80),
+        width: 66,
+        height: 66,
+        child: AlertDialog(
+          contentPadding: const EdgeInsets.all(16),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              FutureBuilder(
+                future: Future.delayed(const Duration(seconds: 3)),
+                builder: (context, snapshot) {
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const CircularProgressIndicator();
+                  } else if (snapshot.connectionState == ConnectionState.done) {
+                    if (snapshot.hasError) {
+                      return const Icon(
+                        Icons.error_outline,
+                        size: 41,
+                        color: Colors.red,
+                      );
+                    }
+                    return const Icon(
+                      Icons.check_circle_outline_sharp,
+                      size: 41,
+                      color: Colors.blue,
+                    ).animate();
+                  } else {
+                    return Container();
+                  }
+                },
+              ),
+            ],
+          ),
+        ),
+      ),
+    ),
+    barrierDismissible: false,
+  );
+  await Future.delayed(const Duration(seconds: 3));
+  Get.back();
 }

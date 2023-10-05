@@ -1,4 +1,5 @@
-import 'package:enlight_q_app/models/question.dart';
+
+import 'package:enlightq_service_package/models/question.dart';
 
 var question = Question(
   id: "id",

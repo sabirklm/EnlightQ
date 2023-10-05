@@ -1,7 +1,10 @@
 import 'package:enlight_q_app/views/pages/auth_view.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 import 'views/pages/home_view.dart';
+import 'views/pages/initial_view.dart';
 
 class MyApp extends StatelessWidget {
   const MyApp({
@@ -10,10 +13,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'EnlightQ',
       theme: ThemeData.dark(),
-      home: const LoginScreen(),
+      home: const InitialView(),
     );
   }
 }
@@ -31,6 +34,6 @@ class EnlightRoute {
       builder: (context) => page,
     );
     Navigator.pop(context);
-     Navigator.push(context, route);
+    Navigator.push(context, route);
   }
 }

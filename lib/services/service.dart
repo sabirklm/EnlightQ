@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:enlight_q_app/models/question.dart';
-import 'package:enlight_q_app/models/recent_event.dart';
-import 'package:enlight_q_app/models/status.dart';
+import 'package:enlightq_service_package/models/question.dart';
+import 'package:enlightq_service_package/models/recent_event.dart';
+import 'package:enlightq_service_package/models/status.dart';
 
 class BaseService {
   final _dbRef = FirebaseFirestore.instance;

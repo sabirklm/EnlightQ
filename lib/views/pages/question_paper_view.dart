@@ -1,7 +1,8 @@
-import 'package:enlight_q_app/mock_data.dart';
-import 'package:enlight_q_app/models/question.dart';
+import 'package:enlight_q_app/controllers/home_controller.dart';
 import 'package:enlight_q_app/views/widgets/decorated_container.dart';
+import 'package:enlightq_service_package/models/question.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class QuestionPaperPage extends StatelessWidget {
@@ -11,24 +12,29 @@ class QuestionPaperPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final HomeController controller = Get.find();
     return Scaffold(
       appBar: AppBar(),
-      body: ListView(
-        children: [
-          Column(
+      body: Obx(
+        () {
+          return ListView(
             children: [
-              ...List.generate(
-                questions.length,
-                (index) => DecoratedContainer(
-                  child: QuestionCard(
-                    question: questions[index],
-                    questionIndex: index,
+              Column(
+                children: [
+                  ...List.generate(
+                    controller.questions.length,
+                    (index) => DecoratedContainer(
+                      child: QuestionCard(
+                        question: controller.questions[index],
+                        questionIndex: index,
+                      ),
+                    ),
                   ),
-                ),
+                ],
               ),
             ],
-          ),
-        ],
+          );
+        },
       ),
     );
   }
@@ -60,7 +66,7 @@ class QuestionCard extends StatelessWidget {
           (index) => Padding(
             padding: const EdgeInsets.all(8.0),
             child: Text(
-              "${index + 1}. ${question.options[index]}",
+              "${index + 1}. ${question.options[index].text ?? ''}",
               style: GoogleFonts.nunito(
                 fontSize: 16,
                 fontWeight: FontWeight.w400,

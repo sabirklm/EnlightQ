@@ -8,6 +8,8 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import 'my_learning_view.dart';
+
 class HomeView extends StatefulWidget {
   const HomeView({super.key});
 
@@ -18,7 +20,7 @@ class HomeView extends StatefulWidget {
 class _HomeViewState extends State<HomeView> {
   final screens = <Widget>[
     HomeScreen(),
-    StatusView(),
+    MyLearningView(),
     RecentView(),
     ProfileView()
   ];
@@ -34,8 +36,8 @@ class _HomeViewState extends State<HomeView> {
             // backgroundColor: Colors.red,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.receipt_long_outlined),
-            label: 'Recents',
+            icon: Icon(Icons.book_online_rounded),
+            label: 'My Learning',
             // backgroundColor: Colors.green,
           ),
           BottomNavigationBarItem(
@@ -89,6 +91,8 @@ class HomeScreen extends StatelessWidget {
                   title: controller.homeViews[index].title ?? "",
                   papers: controller.homeViews[index].questionPapersIds ?? [],
                   onTapPaper: (paperId) {
+                    controller
+                        .getQuestionByName(controller.homeViews[index].title);
                     EnlightRoute.to(
                       context: context,
                       page: const QuestionPaperPage(),
