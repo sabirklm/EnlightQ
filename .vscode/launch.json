@@ -1,0 +1,35 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "enlightQ",
+            "type": "dart",
+            "request": "launch",
+            "program": "lib/main_prod.dart",
+            "args": [
+                "--flavor",
+                "dev"
+            ]
+        },
+        {
+            "name": "enlightQ-Dev",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_dev.dart",
+            "args": [
+                "--flavor",
+                "dev"
+            ]
+        },
+        {
+            "name": "enlightQ-Stage",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_stage.dart",
+            "args": [
+                "--flavor",
+                "dev"
+            ]
+        }
+    ]
+}

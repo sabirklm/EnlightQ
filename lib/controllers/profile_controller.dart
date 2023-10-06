@@ -42,7 +42,8 @@ class ProfileController extends GetxController {
       nameController.text = userSnap?['username'] ?? "";
       print("[M] ${userSnap}");
     } else {
-      signOut();
+      //signOut();
+      editProfile(true);
     }
   }
 

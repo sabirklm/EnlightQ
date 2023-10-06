@@ -37,14 +37,17 @@ class InitialView extends StatelessWidget {
       //     ),
       //   );
       // }
-      if (controller.isAuthenticated) {
-        if (controller.isRegistered) {
+      if (!controller.isAuthenticated) {
+        return const AuthView(); 
+      } else {
+       if (controller.isRegistered) {
           return const HomeView();
         } else {
-          return const ProfileView();
+          return const ProfileView(
+            isInitialFlow: true,
+          );
         }
       }
-      return const AuthView();
     });
   }
 }

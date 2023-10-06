@@ -8,7 +8,8 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class ProfileView extends StatelessWidget {
-  const ProfileView({super.key});
+  final bool isInitialFlow;
+  const ProfileView({super.key,  this.isInitialFlow=false});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,7 @@ class ProfileView extends StatelessWidget {
           Obx(() {
             return Row(
               children: [
-                if (!controller.isEditable)
+                if (!controller.isEditable && !isInitialFlow)
                   InkWell(
                     onTap: () {
                       controller.editProfile(true);
@@ -37,7 +38,7 @@ class ProfileView extends StatelessWidget {
                       ),
                     ),
                   ),
-                if (controller.isEditable)
+                if (controller.isEditable && !isInitialFlow)
                   InkWell(
                     onTap: () {
                       controller.saveUser();
@@ -202,7 +203,7 @@ class ProfileView extends StatelessWidget {
                         ),
                       ),
                     ),
-                    if (!authController.isRegistered)
+                    if (isInitialFlow)
                       Container(
                         margin: const EdgeInsets.symmetric(
                             vertical: 14, horizontal: 8),

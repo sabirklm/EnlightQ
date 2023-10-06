@@ -22,7 +22,9 @@ class _HomeViewState extends State<HomeView> {
     HomeScreen(),
     MyLearningView(),
     RecentView(),
-    ProfileView()
+    ProfileView(
+      isInitialFlow: false,
+    )
   ];
   var _selectedScreenIndex = 0;
   @override

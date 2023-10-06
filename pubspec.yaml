@@ -55,6 +55,7 @@ dependencies:
       url: https://github.com/sabirklm/enlightq_service_package.git
       ref: dev
   flutter_animate: ^4.2.0+1
+  flavor: ^2.0.0
 
 dev_dependencies:
   flutter_test:

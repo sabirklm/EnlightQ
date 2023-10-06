@@ -1,9 +1,6 @@
-import 'package:enlight_q_app/views/pages/auth_view.dart';
-import 'package:firebase_auth/firebase_auth.dart';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'views/pages/home_view.dart';
 import 'views/pages/initial_view.dart';
 
 class MyApp extends StatelessWidget {

@@ -205,7 +205,7 @@ class _AuthViewState extends State<AuthView> {
       showLoading(future: FirebaseAuth.instance.signInAnonymously());
       // EnlightRoute.to(context: context, page: const HomeView());
       Get.put(AuthController());
-      Get.offAll(() => const InitialView());
+      Get.offAll(() => const ProfileView(isInitialFlow: true,));
     } catch (e) {}
   }
 }
