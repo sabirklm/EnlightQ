@@ -8,7 +8,7 @@
             "program": "lib/main_prod.dart",
             "args": [
                 "--flavor",
-                "dev"
+                "prod"
             ]
         },
         {
@@ -28,7 +28,7 @@
             "program": "lib/main_stage.dart",
             "args": [
                 "--flavor",
-                "dev"
+                "stage"
             ]
         }
     ]

@@ -1,8 +1,6 @@
 import 'dart:ui';
-
 import 'package:enlight_q_app/controllers/auth_controller.dart';
 import 'package:enlight_q_app/views/pages/home_view.dart';
-import 'package:enlight_q_app/views/pages/initial_view.dart';
 import 'package:enlight_q_app/views/pages/profile_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';

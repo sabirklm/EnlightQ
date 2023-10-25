@@ -4,6 +4,7 @@ import 'package:enlight_q_app/views/pages/profile_view.dart';
 import 'package:enlight_q_app/views/pages/question_paper_view.dart';
 import 'package:enlight_q_app/views/pages/recent_view.dart';
 import 'package:enlight_q_app/views/pages/status_view.dart';
+import 'package:enlightq_service_package/models/question.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -91,10 +92,11 @@ class HomeScreen extends StatelessWidget {
                 controller.homeViews.length,
                 (index) => QuextionPapers(
                   title: controller.homeViews[index].title ?? "",
-                  papers: controller.homeViews[index].questionPapersIds ?? [],
-                  onTapPaper: (paperId) {
+                  papers: controller.homeViews[index].questionBanks ?? [],
+                  onTapPaper: (tags) {
                     controller
-                        .getQuestionByName(controller.homeViews[index].title);
+                        .getQuestionByName(tags.tag);
+                    print(tags);
                     EnlightRoute.to(
                       context: context,
                       page: const QuestionPaperPage(),
@@ -111,9 +113,9 @@ class HomeScreen extends StatelessWidget {
 }
 
 class QuextionPapers extends StatelessWidget {
-  final List<String> papers;
+  final List<QuestionTag> papers;
   final String title;
-  final void Function(String id) onTapPaper;
+  final void Function(QuestionTag tags) onTapPaper;
   const QuextionPapers({
     super.key,
     required this.papers,
@@ -160,7 +162,7 @@ class QuextionPapers extends StatelessWidget {
                     child: ClipRRect(
                       borderRadius: BorderRadius.circular(16),
                       child: Image.network(
-                        "https://i.cdn.newsbytesapp.com/images/l158_11531537104319.jpg",
+                        papers[index].imgUrl,
                         fit: BoxFit.fill,
                       ),
                     ),

@@ -12,6 +12,7 @@ class QuestionPaperPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     final HomeController controller = Get.find();
     return Scaffold(
       appBar: AppBar(),
@@ -23,14 +24,16 @@ class QuestionPaperPage extends StatelessWidget {
                 children: [
                   ...List.generate(
                     controller.questions.length,
-                    (index) => DecoratedContainer(
-                      child: QuestionCard(
-                        question: controller.questions[index],
-                        questionIndex: index,
+                    (index) => SizedBox(
+                      width: width,
+                      child: DecoratedContainer(
+                        child: QuestionCard(
+                          question: controller.questions[index],
+                          questionIndex: index,
+                        ),
                       ),
                     ),
                   ),
-                 
                 ],
               ),
             ],
