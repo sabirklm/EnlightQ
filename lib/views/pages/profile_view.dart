@@ -9,7 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 
 class ProfileView extends StatelessWidget {
   final bool isInitialFlow;
-  const ProfileView({super.key,  this.isInitialFlow=false});
+  const ProfileView({super.key, this.isInitialFlow = false});
 
   @override
   Widget build(BuildContext context) {
@@ -71,16 +71,17 @@ class ProfileView extends StatelessWidget {
                     const SizedBox(
                       height: 8,
                     ),
-                    CircleAvatar(
-                      radius: 64,
-                      child: Text(
-                        "S",
-                        style: GoogleFonts.adamina(
-                          fontSize: 64,
-                          letterSpacing: 2.0,
+                    if (!isInitialFlow)
+                      CircleAvatar(
+                        radius: 64,
+                        child: Text(
+                          "S",
+                          style: GoogleFonts.adamina(
+                            fontSize: 64,
+                            letterSpacing: 2.0,
+                          ),
                         ),
                       ),
-                    ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: TextFormField(
@@ -115,7 +116,7 @@ class ProfileView extends StatelessWidget {
                         ),
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(),
-                          hintText: "mondal.sabir.com97@gmail.com",
+                          hintText: "xyz.example@abc.com",
                           hintStyle: GoogleFonts.adamina(
                             fontSize: 14,
                             letterSpacing: 2.0,
@@ -138,7 +139,7 @@ class ProfileView extends StatelessWidget {
                         ),
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(),
-                          hintText: "+91 8617418378",
+                          hintText: "+91 XXXXXXXXXX",
                           hintStyle: GoogleFonts.adamina(
                             fontSize: 14,
                             letterSpacing: 2.0,
@@ -157,7 +158,7 @@ class ProfileView extends StatelessWidget {
                         ),
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(),
-                          hintText: "B.E.",
+                          hintText: "Degree",
                           hintStyle: GoogleFonts.adamina(
                             fontSize: 14,
                             letterSpacing: 2.0,
@@ -176,7 +177,7 @@ class ProfileView extends StatelessWidget {
                         ),
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(),
-                          hintText: "Jadavpur University",
+                          hintText: "College Name",
                           hintStyle: GoogleFonts.adamina(
                             fontSize: 14,
                             letterSpacing: 2.0,
@@ -195,7 +196,7 @@ class ProfileView extends StatelessWidget {
                         ),
                         decoration: InputDecoration(
                           border: const OutlineInputBorder(),
-                          hintText: "2023",
+                          hintText: "Year of passout",
                           hintStyle: GoogleFonts.adamina(
                             fontSize: 14,
                             letterSpacing: 2.0,

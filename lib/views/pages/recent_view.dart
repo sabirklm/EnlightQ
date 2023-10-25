@@ -49,36 +49,36 @@ class RecentView extends StatelessWidget {
                       wordSpacing: 2.0,
                     ),
                   ),
-                  if(controller.recents[index].url!=null)
-                  GestureDetector(
-                    onTap: () {
-                      FlutterWebBrowser.openWebPage(
-                        url: controller.recents[index].url!,
-                        customTabsOptions: const CustomTabsOptions(
-                          colorScheme: CustomTabsColorScheme.dark,
-                          shareState: CustomTabsShareState.on,
-                        ),
-                        safariVCOptions: const SafariViewControllerOptions(
-                          barCollapsingEnabled: true,
-                          dismissButtonStyle:
-                              SafariViewControllerDismissButtonStyle.close,
-                          modalPresentationCapturesStatusBarAppearance: true,
-                        ),
-                      );
-                    },
-                    child: Align(
-                      alignment: Alignment.topRight,
-                      child: Text(
-                        "More",
-                        style: GoogleFonts.nunito(
-                          fontSize: 14,
-                          letterSpacing: .620,
-                          wordSpacing: 2.0,
-                          color: Colors.orange,
+                  if (controller.recents[index].url != null)
+                    GestureDetector(
+                      onTap: () {
+                        FlutterWebBrowser.openWebPage(
+                          url: controller.recents[index].url!,
+                          customTabsOptions: const CustomTabsOptions(
+                            colorScheme: CustomTabsColorScheme.dark,
+                            shareState: CustomTabsShareState.on,
+                          ),
+                          safariVCOptions: const SafariViewControllerOptions(
+                            barCollapsingEnabled: true,
+                            dismissButtonStyle:
+                                SafariViewControllerDismissButtonStyle.close,
+                            modalPresentationCapturesStatusBarAppearance: true,
+                          ),
+                        );
+                      },
+                      child: Align(
+                        alignment: Alignment.topRight,
+                        child: Text(
+                          "More",
+                          style: GoogleFonts.nunito(
+                            fontSize: 14,
+                            letterSpacing: .620,
+                            wordSpacing: 2.0,
+                            color: Colors.orange,
+                          ),
                         ),
                       ),
-                    ),
-                  )
+                    )
                 ],
               ),
             ),

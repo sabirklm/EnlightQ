@@ -24,7 +24,7 @@ class BaseService {
 
   Future<List<Status>> getStatus() async {
     var homeSnap = await _dbRef.collection("status").get();
-  
+
     var views = homeSnap.docs.map((e) {
       var temp = Status.fromJson(e.data());
       temp.id = e.id;
@@ -40,6 +40,18 @@ class BaseService {
       temp.id = e.id;
       return temp;
     }).toList();
+    views.sort(
+      (a, b) =>
+          DateTime.tryParse(
+            a.cratedAt ?? "",
+          )?.compareTo(
+            DateTime.tryParse(
+                  b.cratedAt ?? "",
+                ) ??
+                DateTime.now(),
+          ) ??
+          0,
+    );
     return views;
   }
 }

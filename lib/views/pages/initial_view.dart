@@ -38,11 +38,35 @@ class InitialView extends StatelessWidget {
       //   );
       // }
       if (!controller.isAuthenticated) {
-        return const AuthView(); 
+        return const AuthView();
       } else {
-       if (controller.isRegistered) {
+        if (controller.isRegistered) {
           return const HomeView();
         } else {
+          if (controller.isLoading) {
+            return Scaffold(
+              body: Center(
+                child: Text.rich(
+                  TextSpan(
+                    text: "Enlight",
+                    style: GoogleFonts.nunito(
+                      fontSize: 32,
+                    ),
+                    children: [
+                      TextSpan(
+                        text: "Q",
+                        style: GoogleFonts.nunito(
+                          fontSize: 32,
+                          color: Colors.green.shade500,
+                        ),
+                        children: [],
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          }
           return const ProfileView(
             isInitialFlow: true,
           );

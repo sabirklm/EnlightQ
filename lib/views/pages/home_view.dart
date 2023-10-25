@@ -4,6 +4,7 @@ import 'package:enlight_q_app/views/pages/profile_view.dart';
 import 'package:enlight_q_app/views/pages/question_paper_view.dart';
 import 'package:enlight_q_app/views/pages/recent_view.dart';
 import 'package:enlight_q_app/views/pages/status_view.dart';
+import 'package:enlight_q_app/views/widgets/no_network_widet.dart';
 import 'package:enlightq_service_package/models/question.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -88,14 +89,14 @@ class HomeScreen extends StatelessWidget {
         Obx(() {
           return Column(
             children: [
+              const NoNetworkWidget(),
               ...List.generate(
                 controller.homeViews.length,
                 (index) => QuextionPapers(
                   title: controller.homeViews[index].title ?? "",
                   papers: controller.homeViews[index].questionBanks ?? [],
                   onTapPaper: (tags) {
-                    controller
-                        .getQuestionByName(tags.tag);
+                    controller.getQuestionByName(tags.tag);
                     print(tags);
                     EnlightRoute.to(
                       context: context,
