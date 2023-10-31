@@ -69,7 +69,7 @@ class _AuthViewState extends State<AuthView> {
                   ),
                   GestureDetector(
                     onTap: () {
-                      EnlightRoute.to(context: context, page: const HomeView());
+                     // EnlightRoute.to(context: context, page: const HomeView());
                     },
                     child: Container(
                       width: width,

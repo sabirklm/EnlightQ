@@ -21,7 +21,7 @@ class HomeView extends StatefulWidget {
 
 class _HomeViewState extends State<HomeView> {
   final screens = <Widget>[
-    HomeScreen(),
+    const HomeScreen(),
     MyLearningView(),
     RecentView(),
     ProfileView(
