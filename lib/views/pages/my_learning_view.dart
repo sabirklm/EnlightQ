@@ -6,15 +6,31 @@ class MyLearningView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
     // TODO: implement build
     return Scaffold(
       body: Center(
-        child: Text(
-          "Comming Soon",
-          style: GoogleFonts.adamina(
-            fontSize: 14,
-            letterSpacing: 2.0,
-          ),
+        child: ListView(
+          physics: const BouncingScrollPhysics(),
+          children: [
+            Wrap(
+              children: [
+                ...List.generate(
+                  12,
+                  (index) => Container(
+                    padding: const EdgeInsets.all(16),
+                    margin:
+                        const EdgeInsets.symmetric(horizontal: 8, vertical: 8),
+                    width: width / 2 - 16,
+                    height: 120,
+                    decoration: BoxDecoration(
+                      color: Colors.grey.shade400,
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ],
         ),
       ),
     );

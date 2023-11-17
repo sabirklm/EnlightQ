@@ -24,7 +24,7 @@ class AuthController extends GetxController {
 
   initAuth() async {
     _loadingStatus.value = true;
-    //await Future.delayed(const Duration(seconds: 3));
+    await Future.delayed(const Duration(seconds: 3));
     _checkAuthStatus();
     _checkRegistrationStatus();
     _loadingStatus.value = false;
