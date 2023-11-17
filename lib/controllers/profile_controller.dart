@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:enlight_q_app/views/pages/auth_view.dart';
 import 'package:enlight_q_app/views/pages/initial_view.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -40,7 +41,6 @@ class ProfileController extends GetxController {
       var userSnap = snap.data();
       emailController.text = userSnap?['email'] ?? "";
       nameController.text = userSnap?['username'] ?? "";
-      print("[M] ${userSnap}");
     } else {
       //signOut();
       editProfile(true);
@@ -49,7 +49,7 @@ class ProfileController extends GetxController {
 
   signOut({BuildContext? context}) {
     _auth.signOut();
-    Get.offAll(() => const InitialView());
+    Get.offAll(() => const AuthView());
   }
 
   void saveUser() {

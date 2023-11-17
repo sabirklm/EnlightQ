@@ -25,8 +25,26 @@ class _AuthViewState extends State<AuthView> {
       body: SafeArea(
         child: Stack(
           children: [
-            Image.network(
-              "https://www.dots-project.eu/wp-content/uploads/2020/02/shutterstock_157727576-1707x2048.jpg",
+            FutureBuilder(
+              future: Future.delayed(const Duration(seconds: 3)),
+              builder: (context, snapshot) {
+                if (snapshot.connectionState == ConnectionState.waiting) {
+                  return Image.asset("assets/images/enlight_q-replacement.png")
+                      .animate()
+                      .fadeIn(
+                        duration: const Duration(
+                          seconds: 3,
+                        ),
+                      );
+                }
+                return Image.network(
+                  "https://www.dots-project.eu/wp-content/uploads/2020/02/shutterstock_157727576-1707x2048.jpg",
+                ).animate().fadeIn(
+                      duration: const Duration(
+                        seconds: 3,
+                      ),
+                    );
+              },
             ),
             Container(
               decoration: const BoxDecoration(
@@ -69,7 +87,7 @@ class _AuthViewState extends State<AuthView> {
                   ),
                   GestureDetector(
                     onTap: () {
-                     // EnlightRoute.to(context: context, page: const HomeView());
+                      // EnlightRoute.to(context: context, page: const HomeView());
                     },
                     child: Container(
                       width: width,
@@ -203,7 +221,9 @@ class _AuthViewState extends State<AuthView> {
       showLoading(future: FirebaseAuth.instance.signInAnonymously());
       // EnlightRoute.to(context: context, page: const HomeView());
       Get.put(AuthController());
-      Get.offAll(() => const ProfileView(isInitialFlow: true,));
+      Get.offAll(() => const ProfileView(
+            isInitialFlow: true,
+          ));
     } catch (e) {}
   }
 }

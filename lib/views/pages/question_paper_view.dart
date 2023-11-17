@@ -58,6 +58,29 @@ class QuestionCard extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.share,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.bookmark,
+              ),
+            ),
+            IconButton(
+              onPressed: () {},
+              icon: const Icon(
+                Icons.help,
+              ),
+            ),
+          ],
+        ),
         Text(
           "${questionIndex + 1}. ${question.text}",
           style: GoogleFonts.nunito(

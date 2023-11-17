@@ -1,9 +1,12 @@
+import 'dart:ui';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:enlight_q_app/controllers/auth_controller.dart';
 import 'package:enlight_q_app/controllers/profile_controller.dart';
 import 'package:enlight_q_app/views/pages/home_view.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_animate/flutter_animate.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -75,12 +78,19 @@ class ProfileView extends StatelessWidget {
                       CircleAvatar(
                         radius: 64,
                         child: Text(
-                          "S",
+                          controller.nameController.text.isEmpty
+                              ? "The\nDreamer"
+                              : controller.nameController.text[0],
                           style: GoogleFonts.adamina(
-                            fontSize: 64,
+                            fontSize: controller.nameController.text.isEmpty
+                                ? 18
+                                : 64,
                             letterSpacing: 2.0,
                           ),
-                        ),
+                          textAlign: TextAlign.center,
+                        )
+                            .animate()
+                            .fadeIn(duration: const Duration(seconds: 3)),
                       ),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
@@ -238,7 +248,58 @@ class ProfileView extends StatelessWidget {
                             ),
                           ),
                           onPressed: () {
-                            controller.signOut(context: context);
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return BackdropFilter(
+                                  filter: ImageFilter.blur(
+                                      sigmaX: 2.0, sigmaY: 3.0),
+                                  child: AlertDialog(
+                                    content: Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [
+                                        Text(
+                                          "Are you sure you want to log out? ",
+                                          style: GoogleFonts.adamina(
+                                            letterSpacing: 2.0,
+                                            fontSize: 14,
+                                          ),
+                                        ).animate().fade()
+                                      ],
+                                    ),
+                                    actions: [
+                                      MaterialButton(
+                                        onPressed: () {
+                                          Navigator.pop(context);
+                                        },
+                                        elevation: 0.0,
+                                        child: Text(
+                                          "Cancel",
+                                          style: GoogleFonts.adamina(
+                                            letterSpacing: 2.0,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ),
+                                      MaterialButton(
+                                        onPressed: () {
+                                          controller.signOut(context: context);
+                                        },
+                                        color: Colors.black,
+                                        elevation: 0.0,
+                                        child: Text(
+                                          "Logout",
+                                          style: GoogleFonts.adamina(
+                                            letterSpacing: 2.0,
+                                            fontSize: 14,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+                              },
+                            );
                           },
                         ),
                       ),

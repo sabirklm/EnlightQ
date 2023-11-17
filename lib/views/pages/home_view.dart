@@ -20,60 +20,72 @@ class HomeView extends StatefulWidget {
 }
 
 class _HomeViewState extends State<HomeView> {
+  var navigations = <int>[];
   final screens = <Widget>[
     const HomeScreen(),
-    MyLearningView(),
-    RecentView(),
-    ProfileView(
+    const MyLearningView(),
+    const RecentView(),
+    const ProfileView(
       isInitialFlow: false,
     )
   ];
   var _selectedScreenIndex = 0;
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      bottomNavigationBar: BottomNavigationBar(
-        items: const <BottomNavigationBarItem>[
-          BottomNavigationBarItem(
-            icon: Icon(Icons.home),
-            label: 'Home',
-            // backgroundColor: Colors.red,
+    return WillPopScope(
+      onWillPop: () async {
+        if (_selectedScreenIndex == 0) {
+          return true;
+        }
+        setState(() {
+          _selectedScreenIndex -= 1;
+        });
+        return false;
+      },
+      child: Scaffold(
+        bottomNavigationBar: BottomNavigationBar(
+          items: const <BottomNavigationBarItem>[
+            BottomNavigationBarItem(
+              icon: Icon(Icons.home),
+              label: 'Home',
+              // backgroundColor: Colors.red,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.book_online_rounded),
+              label: 'My Learning',
+              // backgroundColor: Colors.green,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.important_devices),
+              label: 'Important',
+              // backgroundColor: Colors.purple,
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.person),
+              label: 'Profile',
+              // backgroundColor: Colors.pink,
+            ),
+          ],
+          currentIndex: _selectedScreenIndex,
+          selectedItemColor: Colors.amber,
+          onTap: (value) {
+            setState(() {
+              print('[M] $value');
+              _selectedScreenIndex = value;
+            });
+          },
+          selectedLabelStyle: GoogleFonts.nunito(
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.book_online_rounded),
-            label: 'My Learning',
-            // backgroundColor: Colors.green,
+          unselectedLabelStyle: GoogleFonts.nunito(
+            fontSize: 14,
+            fontWeight: FontWeight.w700,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.important_devices),
-            label: 'Important',
-            // backgroundColor: Colors.purple,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
-            label: 'Profile',
-            // backgroundColor: Colors.pink,
-          ),
-        ],
-        currentIndex: _selectedScreenIndex,
-        selectedItemColor: Colors.amber,
-        onTap: (value) {
-          setState(() {
-            print('[M] $value');
-            _selectedScreenIndex = value;
-          });
-        },
-        selectedLabelStyle: GoogleFonts.nunito(
-          fontSize: 14,
-          fontWeight: FontWeight.w700,
         ),
-        unselectedLabelStyle: GoogleFonts.nunito(
-          fontSize: 14,
-          fontWeight: FontWeight.w700,
-        ),
+        // appBar: AppBar(),
+        body: screens[_selectedScreenIndex],
       ),
-      // appBar: AppBar(),
-      body: screens[_selectedScreenIndex],
     );
   }
 }
