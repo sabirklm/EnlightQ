@@ -17,11 +17,19 @@ jobs:
       - uses: actions/checkout@v2
       # - run: flutter run -d chrome --flavor prod -t lib/main_prod.dart
       - run: flutter doctor
+      - run: screencapture -R0,0,800,600 output.mov
       - run: flutter build apk --flavor prod -t lib/main_prod.dart
+      - run: sleep 60
+
       # - uses: actions/download-artifact@v3
       #   with:
       #     name: APKs
       #     path: build/*
+      - uses: actions/upload-artifact@v2
+        with:
+          name: screen-recording
+          path: output.mov
+
       
       
 
