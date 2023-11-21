@@ -10,15 +10,18 @@ jobs:
 #do necessary flutter set up
     name: "Set up Flutter"
     steps:
+      - uses: actions/setup-java@v1
+        with:
+          java-version: "12.x"
       - uses: subosito/flutter-action@v1
       - uses: actions/checkout@v2
       # - run: flutter run -d chrome --flavor prod -t lib/main_prod.dart
       - run: flutter doctor
       - run: flutter build apk --flavor prod -t lib/main_prod.dart
-      - uses: actions/download-artifact@v3
-        with:
-          name: APKs
-          path: build/*
+      # - uses: actions/download-artifact@v3
+      #   with:
+      #     name: APKs
+      #     path: build/*
       
       
 
