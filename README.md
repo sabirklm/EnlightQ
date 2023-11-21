@@ -1,3 +1,12 @@
+
+[Generate APK for Prod] - flutter build apk --flavor prod -t lib/main_prod.dart
+[Generate APK for Dev] - flutter build apk --flavor dev -t lib/main_dev.dart
+[Generate APPBUNDLE for Prod] - flutter build appbundle --release --flavor prod -t lib/main_prod.dart
+
+flutter pub run build_runner build --delete-conflicting-outputs
+
+DEBUG Build - flutter build apk --debug --flavor prod -t lib/main_prod.dart
+
 # Question Bank App[https://enlightq-ae9d4.web.app]
 
 This Flutter application is designed to serve as a comprehensive question bank for government job exams. It aims to provide users with a user-friendly interface to practice and prepare for various government job recruitment tests.
