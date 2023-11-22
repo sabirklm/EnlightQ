@@ -1,9 +1,9 @@
 name: "Learning YAML"
-on:
-  push:
-    branches:
-      - dev
-      - stage
+on: workflow_dispatch
+  # push:
+  #   branches:
+  #     - dev
+  #     - stage
 jobs: 
   build_and_deploy:
     runs-on: "macos-latest"
