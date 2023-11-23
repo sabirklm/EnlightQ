@@ -27,6 +27,9 @@ jobs:
       # - run: cd/ios
       # - run: pod install
       # - run: cd ..
+      - run:  rm -rf ~/.cocoapods/repos/trunk/
+      - run: pod install
+
       - run: |
               flutter test integration_test
 

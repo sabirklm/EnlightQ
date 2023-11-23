@@ -1,4 +1,4 @@
-name: "Setting Up IOS simulator"
+name: "Setting Test Env"
 on: [push]
 
 jobs: 
