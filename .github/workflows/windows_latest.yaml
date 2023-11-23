@@ -13,8 +13,8 @@ jobs:
       - uses: actions/checkout@v4
         with:
           channel: 'beta'
-      - run: flutter config --enable-windows-desktop
-      - run: flutter test -d windows integration_test
+      # - run: flutter config --enable-windows-desktop
+      - run: flutter test -d chrome integration_test
               # flutter config --enable-windows-desktop
               # flutter test -d windows integration_test
 
