@@ -1,4 +1,4 @@
-name: "Learning YAML"
+name: "Setting Up IOS simulator"
 on: workflow_dispatch
   # push:
   #   branches:
@@ -15,6 +15,10 @@ jobs:
           java-version: "12.x"
       - uses: subosito/flutter-action@v1
       - uses: actions/checkout@v2
+      - uses: actions/checkout@v4
+      - uses: futureware-tech/simulator-action@v3
+        with:
+          model: 'iPhone 14'
       # - run: flutter run -d chrome --flavor prod -t lib/main_prod.dart
       - run: flutter doctor
       # - run: sleep 600
