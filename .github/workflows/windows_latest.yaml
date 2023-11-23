@@ -1,32 +1,15 @@
 name: "Setting Up IOS simulator"
 on: [push]
-  # push:
-  #   branches:
-  #     - dev
-  #     - stage
+
 jobs: 
   build_and_deploy:
     runs-on: "windows-latest"
-#do necessary flutter set up
     name: "Set up Flutter"
     steps:
       - uses: actions/setup-java@v1
         with:
           java-version: "12.x"
       - uses: subosito/flutter-action@v1
-      # # - uses: actions/checkout@v2
-      # - uses: actions/checkout@v4
-      # - uses: futureware-tech/simulator-action@v3
-      #   with:
-      #     model: 'iPhone 14'
-      # - run: flutter run -d chrome --flavor prod -t lib/main_prod.dart
-      # - run: flutter doctor
-      # - run: sleep 600
-      # - run: screencapture -R0,0,800,600 output.mov
-      # - run: flutter build apk --flavor prod -t lib/main_prod.dart
-      # - run: cd/ios
-      # - run: pod install
-      # - run: cd ..
       - run: |
               flutter config --enable-windows-desktop
               flutter test -d windows integration_test
