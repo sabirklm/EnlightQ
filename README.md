@@ -7,6 +7,7 @@ flutter pub run build_runner build --delete-conflicting-outputs
 
 DEBUG Build - flutter build apk --debug --flavor prod -t lib/main_prod.dart
 https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
+https://github.com/marketplace/actions/launch-ios-simulator
 
 # Question Bank App[https://enlightq-ae9d4.web.app]
 
