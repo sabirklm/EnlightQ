@@ -12,9 +12,10 @@ jobs:
       - uses: subosito/flutter-action@v1
         with:
           channel: 'beta'
-      - run: |
-              flutter config --enable-windows-desktop
-              flutter test -d windows integration_test
+      # - run: flutter config --enable-windows-desktop
+      - run: flutter test -d windows integration_test
+              # flutter config --enable-windows-desktop
+              # flutter test -d windows integration_test
 
 
 
