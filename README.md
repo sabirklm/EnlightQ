@@ -4,6 +4,7 @@
 [Generate APPBUNDLE for Prod] - flutter build appbundle --release --flavor prod -t lib/main_prod.dart
 
 flutter pub run build_runner build --delete-conflicting-outputs
+https://blog.gskinner.com/archives/2022/01/flutter-easily-add-ci-testing-with-github-actions.html
 
 DEBUG Build - flutter build apk --debug --flavor prod -t lib/main_prod.dart
 https://docs.github.com/en/actions/using-workflows/storing-workflow-data-as-artifacts
