@@ -1,5 +1,5 @@
 name: "Setting Up IOS simulator"
-on: [workflow_dispatch]
+on: [push]
   # push:
   #   branches:
   #     - dev
@@ -27,8 +27,8 @@ jobs:
       # - run: cd/ios
       # - run: pod install
       # - run: cd ..
-      - run:  rm -rf ~/.cocoapods/repos/trunk/
-      - run: pod install
+      # - run:  rm -rf ~/.cocoapods/repos/trunk/
+      - run: flutter pub get
 
       - run: |
               flutter test integration_test
