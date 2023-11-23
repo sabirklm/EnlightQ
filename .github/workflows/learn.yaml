@@ -1,5 +1,5 @@
 name: "Setting Up IOS simulator"
-on: [workflow_dispatch,push]
+on: [workflow_dispatch]
   # push:
   #   branches:
   #     - dev
@@ -28,8 +28,7 @@ jobs:
       # - run: pod install
       # - run: cd ..
       - run: |
-              flutter config --enable-windows-desktop
-              flutter test -d windows integration_test
+              flutter test integration_test
 
 
 
